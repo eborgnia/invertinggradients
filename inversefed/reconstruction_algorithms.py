@@ -127,7 +127,7 @@ class GradientReconstructor():
             return (torch.rand((self.config['restarts'], self.num_images, *img_shape), **self.setup) - 0.5) * 2
         elif self.config['init'] == 'zeros':
             return torch.zeros((self.config['restarts'], self.num_images, *img_shape), **self.setup)
-        elif self.config['init'] == 'ref_img'
+        elif self.config['init'] == 'ref_img':
             return self.ref_img
         else:
             raise ValueError()
