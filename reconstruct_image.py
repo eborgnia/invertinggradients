@@ -44,6 +44,8 @@ if __name__ == "__main__":
     if args.dataset == 'ImageNet':
         if args.model == 'ResNet152':
             model = torchvision.models.resnet152(pretrained=args.trained_model)
+        elif args.model == 'ResNet50':
+            model = torchvision.models.resnet50(pretrained=args.trained_model)
         else:
             model = torchvision.models.resnet18(pretrained=args.trained_model)
         model_seed = None
