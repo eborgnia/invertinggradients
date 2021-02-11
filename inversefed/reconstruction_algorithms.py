@@ -44,7 +44,7 @@ def _validate_config(config):
 class GradientReconstructor():
     """Instantiate a reconstruction algorithm."""
 
-    def __init__(self, model, mean_std=(0.0, 1.0), config=DEFAULT_CONFIG, num_images=1):
+    def __init__(self, model, mean_std=(0.0, 1.0), config=DEFAULT_CONFIG, num_images=1, ref_img=None):
         """Initialize with algorithm setup."""
         self.config = _validate_config(config)
         self.model = model
@@ -58,6 +58,9 @@ class GradientReconstructor():
 
         self.loss_fn = torch.nn.CrossEntropyLoss(reduction='mean')
         self.iDLG = True
+
+        if ref_img is not None:
+            self.ref_img = ref_img
 
     def reconstruct(self, input_data, labels, img_shape=(3, 32, 32), dryrun=False, eval=True, tol=None):
         """Reconstruct image from gradient."""
@@ -124,6 +127,8 @@ class GradientReconstructor():
             return (torch.rand((self.config['restarts'], self.num_images, *img_shape), **self.setup) - 0.5) * 2
         elif self.config['init'] == 'zeros':
             return torch.zeros((self.config['restarts'], self.num_images, *img_shape), **self.setup)
+        elif self.config['init'] == 'ref_img'
+            return self.ref_img
         else:
             raise ValueError()
 
