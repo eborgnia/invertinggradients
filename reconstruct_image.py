@@ -157,7 +157,7 @@ if __name__ == "__main__":
                           lr_decay=False,
                           scoring_choice=args.scoring_choice)
 
-        rec_machine = inversefed.GradientReconstructor(model, (dm, ds), config, num_images=args.num_images)
+        rec_machine = inversefed.GradientReconstructor(model, (dm, ds), config, num_images=args.num_images, ref_img=ground_truth)
         output, stats = rec_machine.reconstruct(input_gradient, labels, img_shape=img_shape, dryrun=args.dryrun)
 
     else:
