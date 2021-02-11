@@ -174,8 +174,8 @@ def _build_mnist_gray(data_path, augmentations=True, normalize=True):
 def _build_imagenet(data_path, augmentations=True, normalize=True):
     """Define ImageNet with everything considered."""
     # Load data
-    trainset = torchvision.datasets.ImageNet(root=data_path, split='train', transform=transforms.ToTensor())
-    validset = torchvision.datasets.ImageNet(root=data_path, split='val', transform=transforms.ToTensor())
+    trainset = torchvision.datasets.ImageFolder(os.path.join('/fs/cml-datasets/ImageNet/ILSVRC2012/', 'train'), transform=transforms.ToTensor())
+    validset = torchvision.datasets.ImageFolder(os.path.join('/fs/cml-datasets/ImageNet/ILSVRC2012/', 'val'), transform=transforms.ToTensor())
 
     if imagenet_mean is None:
         data_mean, data_std = _get_meanstd(trainset)
