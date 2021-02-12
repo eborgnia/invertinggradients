@@ -128,7 +128,7 @@ class GradientReconstructor():
         elif self.config['init'] == 'zeros':
             return torch.zeros((self.config['restarts'], self.num_images, *img_shape), **self.setup)
         elif self.config['init'] == 'ref_img':
-            return self.ref_img
+            return self.ref_img.unsqueeze(0)
         else:
             raise ValueError()
 
