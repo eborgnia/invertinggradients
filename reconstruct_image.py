@@ -129,16 +129,16 @@ if __name__ == "__main__":
 
         input_gradient_flat = []
         for grad in input_gradient:
-            input_gradient_flat.extend(grad.view(-1))
-        input_gradient_flat = torch.tensor(input_gradient_flat)
+            input_gradient_flat.append(grad.view(-1))
+        input_gradient_flat = torch.cat(input_gradient_flat)
         print("Made it through loop")
 
         input_gradient = boost_salient_filters(input_gradient, 10.0, [17836, 17969, 16440, 17085, 21078, 17723, 16731, 22101, 19884, 18488])
 
         input_gradient_boost = []
         for grad in input_gradient:
-            input_gradient_boost.extend(grad.view(-1))
-        input_gradient_boost = torch.tensor(input_gradient_boost)
+            input_gradient_boost.append(grad.view(-1))
+        input_gradient_boost = torch.cat(input_gradient_boost)
 
         print("The difference between the two tensors is: ", ((input_gradient_flat-input_gradient_boost) > 1e-12).sum())
 
