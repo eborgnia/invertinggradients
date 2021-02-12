@@ -137,7 +137,7 @@ if __name__ == "__main__":
                           restarts=args.restarts,
                           max_iterations=2000,
                           total_variation=args.tv,
-                          init='randn',
+                          init=args.init,
                           filter='none',
                           lr_decay=True,
                           scoring_choice='loss')
