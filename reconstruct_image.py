@@ -135,7 +135,7 @@ if __name__ == "__main__":
                           lr=0.1,
                           optim=args.optimizer,
                           restarts=args.restarts,
-                          max_iterations=20000,
+                          max_iterations=2000,
                           total_variation=args.tv,
                           init='randn',
                           filter='none',
