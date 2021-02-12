@@ -131,6 +131,7 @@ if __name__ == "__main__":
         for grad in input_gradient:
             input_gradient_flat.extend(grad.view(-1))
         input_gradient_flat = torch.tensor(input_gradient_flat)
+        print("Made it through loop")
 
         input_gradient = boost_salient_filters(input_gradient, 10.0, [17836, 17969, 16440, 17085, 21078, 17723, 16731, 22101, 19884, 18488])
 
