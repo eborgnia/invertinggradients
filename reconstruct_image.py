@@ -35,7 +35,7 @@ def boost_salient_filters(input_gradient, boost_const, salient_filters):
             for ind in range(len(salient_filters)):
                 if salient_filters[ind] < 0:
                     input_gradient[idx][salient_filters[ind]] = input_gradient[idx][salient_filters[ind]]*boost_const
-                    salient_filters[ind] = float('Inf')
+                    salient_filters[ind] = 999999
             # if len(salient_filters) == 0:
             #     break
     
