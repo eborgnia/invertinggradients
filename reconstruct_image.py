@@ -31,9 +31,9 @@ def boost_salient_filters(input_gradient, boost_const, salient_filters):
 
     for idx in range(len(input_gradient)):
         if len(input_gradient[idx].size()) == 4:
-            print("We found one!")
-            for filt in salient_filters:
-                filt -= input_gradient[idx].size()[0]
+            for ind in range(len(salient_filters)):
+                salient_filters[ind] -= input_gradient[idx].size()[0]
+                print(salient_filters)
             for filt in salient_filters:
                 if filt < 0:
                     input_gradient[idx][filt] = input_gradient[idx][filt]*boost_const
