@@ -36,7 +36,9 @@ def boost_salient_filters(input_gradient, boost_const, salient_filters):
             for filt in salient_filters:
                 if filt < 0:
                     input_gradient[idx][filt] = input_gradient[idx][filt]*boost_const
+                    print("Salient filters before removing:", salient_filters)
                     salient_filters.remove(filt)
+                    print("Salient filters after removing:", salient_filters)
             print(salient_filters)
             if len(salient_filters) == 0:
                 break
