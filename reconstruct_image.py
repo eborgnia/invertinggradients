@@ -110,6 +110,7 @@ if __name__ == "__main__":
         full_norm = torch.stack([g.norm() for g in input_gradient]).mean()
         print(f'Full gradient norm is {full_norm:e}.')
         print('The length of the list is', len(input_gradient))
+        print('The shape of the first element of the list is', input_gradient[0].size())
 
         # Run reconstruction in different precision?
         if args.dtype != 'float':
