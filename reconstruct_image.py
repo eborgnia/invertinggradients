@@ -132,7 +132,7 @@ if __name__ == "__main__":
                           cost_fn=args.cost_fn,
                           indices='def',
                           weights='equal',
-                          lr=0.1,
+                          lr=0.01,
                           optim=args.optimizer,
                           restarts=args.restarts,
                           max_iterations=2000,
