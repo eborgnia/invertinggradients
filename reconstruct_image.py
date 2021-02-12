@@ -27,6 +27,21 @@ defs.epochs = args.epochs
 if args.deterministic:
     image2graph2vec.utils.set_deterministic()
 
+def boost_salient_filters(input_gradient, boost_const, salient_filters):
+
+    for idx in range(len(input_gradient)):
+        if len(input_gradient[idx].size()) == 4:
+            for filt in salient_filters:
+                filt -= input_gradient[idx].size()[0]
+            for filt in salient_filters:
+                if filt < 0:
+                    input_gradient[idx][filt] = input_gradient[idx][filt]*boost_const
+                    salient_filters.remove(filt)
+            if len(salient_filters) == 0:
+                break
+    
+    return input_gradient 
+
 
 if __name__ == "__main__":
     # Choose GPU device and print status information:
@@ -111,6 +126,8 @@ if __name__ == "__main__":
         print(f'Full gradient norm is {full_norm:e}.')
         print('The length of the list is', len(input_gradient))
         print('The shape of the first element of the list is', input_gradient[0].size())
+
+        input_gradient = boost_salient_filters(input_gradient, 3.0, [17836, 17969, 16440, 17085, 21078, 17723, 16731, 22101, 19884, 18488])
 
         # Run reconstruction in different precision?
         if args.dtype != 'float':
