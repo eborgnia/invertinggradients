@@ -132,7 +132,7 @@ if __name__ == "__main__":
         input_gradient_flat = torch.cat(input_gradient_flat)
         print("Made it through loop")
 
-        input_gradient = boost_salient_filters(input_gradient, 10.0, [2, 3, 4, 17836, 17969, 16440, 17085, 21078, 17723, 16731, 22101, 19884, 18488])
+        input_gradient = boost_salient_filters(input_gradient, 10.0, torch.tensor([2, 3, 4, 17836, 17969, 16440, 17085, 21078, 17723, 16731, 22101, 19884, 18488]))
 
         input_gradient_boost = []
         for grad in input_gradient:
